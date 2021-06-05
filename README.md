@@ -1,5 +1,5 @@
-# PROYECTO SISTEMA DE COLAS
-Proyecto final para el curso de análisis y diseño de algoritmos.
+# LABORATORIO DE ANÁLISIS Y DISEÑO DE ALGORITMOS
+Desarrollo de ejercicios propuestos.
 
 ### Equipo de Análisis y Diseño de Algoritmos
 > Integrantes
