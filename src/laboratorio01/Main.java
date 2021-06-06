@@ -25,7 +25,7 @@ public class Main {
         int valor;
         
         //Probando busqueda secuencial
-        System.out.println("Probando busqueda secuencial");
+        System.out.println("Busqueda secuencial");
         System.out.print("Ingrese tamaño vector: ");
         sizeVector = in.nextInt();
         vector = new int[sizeVector];

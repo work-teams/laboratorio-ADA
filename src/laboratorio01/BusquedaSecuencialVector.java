@@ -15,15 +15,17 @@ public class BusquedaSecuencialVector {
     
     public static boolean buscar(int[] vector, int valor) {
         contadorTiempo = 0;
+        boolean encontrado = false;
         
-        for (int i = 0; i < vector.length; i++) {
-            contadorTiempo++;
-            if (vector[i] == valor) {
-                return true;
+        //Utiliza contadorTiempo tambien como indice, para recorrer el vector.
+        while (contadorTiempo < vector.length && encontrado == false) {
+            if (vector[contadorTiempo] == valor) {
+                encontrado = true;
             }
+            contadorTiempo++;
         }
         
-        return false;
+        return encontrado;
     }
 
     public static int getContadorTiempo() {
@@ -35,6 +37,8 @@ public class BusquedaSecuencialVector {
         for (int i = 0; i < vector.length; i++) {
             vector[i] = i + 1;
         }
+        
+        System.out.println("*Vector rellenado desde el 1 al " + vector.length);
     }
     
 }
