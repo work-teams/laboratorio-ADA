@@ -20,15 +20,42 @@ public class Main {
         // TODO code application logic here
         Scanner in = new Scanner(System.in);
         
-        int termino;
+        //Factorial de un número
+        
+        
+        
+        //MCD de un número usando el algoritmo de Euclides
+        System.out.println("==================================================");
+        System.out.println("MCD de un número usando el algoritmo de Euclides");
+        System.out.println("--------------------------------------------------");
+        int numero_1, numero_2;
+        
+        do{
+            System.out.println("Introduzca el primer numero: ");
+            numero_1 = in.nextInt();
+        }while(numero_1 <= 0);
+        do{
+            System.out.println("Introduzca el segundo numero: ");
+            numero_2 = in.nextInt();
+        }while(numero_2 <= 0);
+        
+        System.out.println("El MCD de dos numeros es: " + MCD.maximoComunDivisor(numero_1,numero_2));
+        System.out.println("Tiempo de ejecución: " + MCD.getContadorTiempo());
+        System.out.println("");
         
         // Probando recursive fibonacci
+        System.out.println("==============================");
+        System.out.println("Probando recursive fibonacci");
+        System.out.println("------------------------------");
+        int termino;
+        
         System.out.println("Recursive Fibonacci");
         System.out.print("Ingresa termino a calcular: ");
         termino = in.nextInt();
         
         System.out.println("El termino " + termino + " es, " + RecursiveFibonacci.calculaRecursiveFibonacci(termino));
         System.out.println("Tiempo de ejecución: " + RecursiveFibonacci.getContadorTiempo());
+        
     }
     
 }
