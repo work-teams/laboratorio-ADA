@@ -9,16 +9,11 @@ package laboratorio02;
  *
  * @author Rodrigo QP
  */
-public class MCD {
-    
+public class Recursividad_MCD {   
     private static int contadorTiempo;
     
-    public static int maximoComunDivisor(int numero_Mayor, int numero_Menor){
-        
-        int num_1=numero_Mayor;
-        int num_2=numero_Menor;
+    public static int maximoComunDivisor(int num_1, int num_2){
         int mcd;
-        
         if(num_1 == num_2){
             mcd = num_1;
         }
@@ -35,6 +30,5 @@ public class MCD {
     public static int getContadorTiempo() {
         return contadorTiempo;
     }
-    
-    
+
 }

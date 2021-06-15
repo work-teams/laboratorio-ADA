@@ -23,10 +23,9 @@ public class Main {
         //Factorial de un número
         
         
-        
         //MCD de un número usando el algoritmo de Euclides
         System.out.println("==================================================");
-        System.out.println("MCD de un número usando el algoritmo de Euclides");
+        System.out.println("Recursividad: MCD de dos numeros");
         System.out.println("--------------------------------------------------");
         int numero_1, numero_2;
         
@@ -39,10 +38,10 @@ public class Main {
             numero_2 = in.nextInt();
         }while(numero_2 <= 0);
         
-        System.out.println("El MCD de dos numeros es: " + MCD.maximoComunDivisor(numero_1,numero_2));
-        System.out.println("Tiempo de ejecución: " + MCD.getContadorTiempo());
-        System.out.println("");
+        System.out.println("El MCD de dos numeros es: " + Recursividad_MCD.maximoComunDivisor(numero_1,numero_2));
+        System.out.println("Tiempo de ejecución: " + Recursividad_MCD.getContadorTiempo());
         
+/*
         // Probando recursive fibonacci
         System.out.println("==============================");
         System.out.println("Probando recursive fibonacci");
@@ -55,7 +54,7 @@ public class Main {
         
         System.out.println("El termino " + termino + " es, " + RecursiveFibonacci.calculaRecursiveFibonacci(termino));
         System.out.println("Tiempo de ejecución: " + RecursiveFibonacci.getContadorTiempo());
-        
+      */  
     }
     
 }

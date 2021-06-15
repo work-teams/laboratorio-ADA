@@ -20,7 +20,7 @@ public class Main {
         
         Scanner in = new Scanner(System.in);
         
-        int n;
+        /*int n;
         int sizeVector;
         int[] vector;
         int valor;
@@ -53,19 +53,19 @@ public class Main {
             System.out.println(numero +" es impar");        
         }
         System.out.println("Tiempo de ejecución: "+ numPariedadEnteros.getContadorTiempo());
-        
+        */
         //Probando MCD 
         int num1,num2;
-        System.out.println("====================================");
-        System.out.println("MCD de dos numeros");
-        System.out.println("------------------------------------");
-        System.out.print("Ingrese primer numero:");
+        System.out.println("=============================");
+        System.out.println("Iterativo: MCD de dos numeros");
+        System.out.println("-----------------------------");
+        System.out.print("Ingrese primer numero: ");
         num1=in.nextInt();
-        System.out.print("Ingrese segundo numero:");
+        System.out.print("Ingrese segundo numero: ");
         num2=in.nextInt();
         System.out.println("El mcd es " + MCD.MCDFuncion(num1, num2));
         System.out.println("Tiempo de ejecución: "+ MCD.getContadorTiempo());
-        
+        /*
         //Probando Fibonacci
         System.out.println("Enésimo termino Fibonacci");
         System.out.println("-------------------------");
@@ -73,7 +73,7 @@ public class Main {
         n = in.nextInt();
         System.out.println("El término " + n + ": " + serieFibonacci.nFibonacci(n));
         System.out.println("Tiempo de ejecución: "+ serieFibonacci.getContadorTiempo());
-        
+        */
     }
     
 }
