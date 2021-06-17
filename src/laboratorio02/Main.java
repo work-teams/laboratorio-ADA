@@ -19,8 +19,15 @@ public class Main {
     public static void main(String[] args) {
         // TODO code application logic here
         Scanner in = new Scanner(System.in);
+        int n;
         
-        //Factorial de un número
+         //Probando RecursivoFactorial
+        System.out.println("Probando Factorial recursivo");
+        System.out.println("-------------------------");
+        System.out.println("Ingrese un numero entero positivo: ");
+        n = in.nextInt();
+        System.out.println("Factorial de " + n + ": " + RecursivoFactorial.calRecFactorial(n));
+        System.out.println("Tiempo de ejecución: "+ RecursivoFactorial.getContadorTiempo());
         
         
         //MCD de un número usando el algoritmo de Euclides
