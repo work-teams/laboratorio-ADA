@@ -48,7 +48,7 @@ public class Main {
         System.out.println("El MCD de dos numeros es: " + Recursividad_MCD.maximoComunDivisor(numero_1,numero_2));
         System.out.println("Tiempo de ejecución: " + Recursividad_MCD.getContadorTiempo());
         
-/*
+
         // Probando recursive fibonacci
         System.out.println("==============================");
         System.out.println("Probando recursive fibonacci");
@@ -61,7 +61,7 @@ public class Main {
         
         System.out.println("El termino " + termino + " es, " + RecursiveFibonacci.calculaRecursiveFibonacci(termino));
         System.out.println("Tiempo de ejecución: " + RecursiveFibonacci.getContadorTiempo());
-      */  
+        
     }
     
 }
