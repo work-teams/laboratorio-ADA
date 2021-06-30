@@ -34,6 +34,16 @@ public class Main {
         System.out.println(miEmpresa.ImprimeDatoDeArregloOrdenado(pos));
         System.out.println("Tiempo de ejecución: " + BusquedaSecuencialAO.getContador());
         
+        System.out.println("Busqueda binaria");
+        System.out.println("----------------------------------------");
+        System.out.print("Ingrese valor a buscar: ");
+        
+        int valor2 = in.nextInt();
+        int pos2 = BusquedaBinaria.buscar(miEmpresa, valor2);
+        
+        System.out.println(miEmpresa.ImprimeDatoDeArregloOrdenado(pos2));
+        System.out.println("Tiempo de ejecución: " + BusquedaBinaria.getContador());
+        
     }
     
 }
