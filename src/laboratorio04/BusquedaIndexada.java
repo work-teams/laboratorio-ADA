@@ -10,28 +10,24 @@ package laboratorio04;
  * @author Rodrigo QP
  */
 public class BusquedaIndexada {
-    private static int contador = 0;
-    private int comparaciones = 0;
     
-    public void Buscar(int m,BusquedaIndexada.Empresa x){
-        comparaciones = 0;
-        boolean s=false;
-        int i=0;
-        while( i < x.getNumeroDeEmpleados()&& !s ){
-           // for(int i = 0; i < x.getNumeroDeEmpleados(); i++){
-            
-             if(m==x.getIndiceDelEmpleado(i)){
-               System.out.printf("%10d%10s%10.2f\n",
-                    x.getCodigoDelEmpleado(i),
-                    x.getNombreDelEmpleado(i),
-                    x.getSueldoDelEmpleado(i));
-               s=true;
-             }
-              i++;
-              comparaciones++;      
+    private static int contador = 0;
+    
+    public static int buscar(Empresa miEmpresa, int valor) {
+        int i = 0;
+        int index = 0;
+        System.out.println(miEmpresa.arregloEmpleadosDesordenado.length);
+        for (i = 0; i < miEmpresa.arregloEmpleadosDesordenado.length; i += 1) {
+            if(miEmpresa.arregloEmpleadosDesordenado[i].getCodigo()==valor){
+                index = i;
+            }
         }
-        
-    }   
-        
-}   
+        return index;
+    }
+    
+    public static int getContador() {
+        return contador + 1;
+    }
+
+}
 

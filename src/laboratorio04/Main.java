@@ -59,10 +59,10 @@ public class Main {
         int valor3 = in.nextInt();
         int pos3 = BusquedaBinaria.buscar(miEmpresa, valor3);
         
-        System.out.println(miEmpresa.ImprimeDatoDeArregloOrdenado(pos3));
+        System.out.println(miEmpresa.ImprimeDatoDeArregloDesordenado(pos3));
         System.out.println("Tiempo de ejecución: " + BusquedaBinaria.getContador());
         
-        //Ejercicio 04
+        //Ejercicio 
         System.out.println("========================================");
         System.out.println("Busqueda Secuencia por Bloques");
         System.out.println("----------------------------------------");
@@ -70,9 +70,19 @@ public class Main {
         int valor4 = in.nextInt();
         int pos4 = BusquedaSecuencialBloques.buscar(miEmpresa, valor4);
         
-        System.out.println(miEmpresa.ImprimeDatoDeArregloOrdenado(pos4));
+        System.out.println(miEmpresa.ImprimeDatoDeArregloDesordenado(pos4));
         System.out.println("Tiempo de ejecución: " + BusquedaSecuencialBloques.getContador());
+
+        //Ejercicio 
+        System.out.println("========================================");
+        System.out.println("Busqueda Secuencia por Indexada");
+        System.out.println("----------------------------------------");
+        System.out.print("Ingrese valor a buscar: ");
+        int valor5 = in.nextInt();
+        int pos5 = BusquedaIndexada.buscar(miEmpresa, valor5);
         
+        System.out.println(miEmpresa.ImprimeDatoDeArregloDesordenado(pos5));
+        System.out.println("Tiempo de ejecución: " + BusquedaIndexada.getContador());
     }
     
 }
