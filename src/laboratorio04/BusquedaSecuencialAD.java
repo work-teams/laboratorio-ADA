@@ -21,7 +21,6 @@ public class BusquedaSecuencialAD {
         while (i <= miEmpresa.arregloEmpleadosDesordenado.length-1 && encontrado == false) {
             if (miEmpresa.arregloEmpleadosDesordenado[i].getCodigo() == valor) {
                 pos = i;
-                System.out.println(pos);
                 encontrado = true;
             }
             i = i + 1;

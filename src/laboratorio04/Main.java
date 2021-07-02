@@ -25,8 +25,9 @@ public class Main {
         
         //Ejercicio 01
         // Busqueda secuencial con arreglo desordenado.
+        System.out.println("===========================================");
         System.out.println("Busqueda secuencial con arreglo desordenado");
-        System.out.println("----------------------------------------");
+        System.out.println("-------------------------------------------");
         System.out.print("Ingrese valor a buscar: ");
         
         int valor1 = in.nextInt();
@@ -38,6 +39,7 @@ public class Main {
         
         //Ejercicio 02
         // Busqueda secuencial con arreglo ordenado.
+        System.out.println("========================================");
         System.out.println("Busqueda secuencial con arreglo ordenado");
         System.out.println("----------------------------------------");
         System.out.print("Ingrese valor a buscar: ");
@@ -49,6 +51,7 @@ public class Main {
         System.out.println("Tiempo de ejecución: " + BusquedaSecuencialAO.getContador());
         
         //Ejercicio 03
+        System.out.println("========================================");
         System.out.println("Busqueda binaria");
         System.out.println("----------------------------------------");
         System.out.print("Ingrese valor a buscar: ");
@@ -58,6 +61,17 @@ public class Main {
         
         System.out.println(miEmpresa.ImprimeDatoDeArregloOrdenado(pos3));
         System.out.println("Tiempo de ejecución: " + BusquedaBinaria.getContador());
+        
+        //Ejercicio 04
+        System.out.println("========================================");
+        System.out.println("Busqueda Secuencia por Bloques");
+        System.out.println("----------------------------------------");
+        System.out.print("Ingrese valor a buscar: ");
+        int valor4 = in.nextInt();
+        int pos4 = BusquedaSecuencialBloques.buscar(miEmpresa, valor4);
+        
+        System.out.println(miEmpresa.ImprimeDatoDeArregloOrdenado(pos4));
+        System.out.println("Tiempo de ejecución: " + BusquedaSecuencialBloques.getContador());
         
     }
     
