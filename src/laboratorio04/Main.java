@@ -23,25 +23,40 @@ public class Main {
         // Instancia objeto empresa y crea arreglos.
         Empresa miEmpresa = new Empresa();
         
+        //Ejercicio 01
+        // Busqueda secuencial con arreglo desordenado.
+        System.out.println("Busqueda secuencial con arreglo desordenado");
+        System.out.println("----------------------------------------");
+        System.out.print("Ingrese valor a buscar: ");
+        
+        int valor1 = in.nextInt();
+        int pos1 = BusquedaSecuencialAD.buscar(miEmpresa, valor1);
+        
+        System.out.println(miEmpresa.ImprimeDatoDeArregloDesordenado(pos1));
+        System.out.println("Tiempo de ejecución: " + BusquedaSecuencialAD.getContador());
+
+        
+        //Ejercicio 02
         // Busqueda secuencial con arreglo ordenado.
         System.out.println("Busqueda secuencial con arreglo ordenado");
         System.out.println("----------------------------------------");
         System.out.print("Ingrese valor a buscar: ");
         
-        int valor = in.nextInt();
-        int pos = BusquedaSecuencialAO.buscar(miEmpresa, valor);
+        int valor2 = in.nextInt();
+        int pos2 = BusquedaSecuencialAO.buscar(miEmpresa, valor2);
         
-        System.out.println(miEmpresa.ImprimeDatoDeArregloOrdenado(pos));
+        System.out.println(miEmpresa.ImprimeDatoDeArregloOrdenado(pos2));
         System.out.println("Tiempo de ejecución: " + BusquedaSecuencialAO.getContador());
         
+        //Ejercicio 03
         System.out.println("Busqueda binaria");
         System.out.println("----------------------------------------");
         System.out.print("Ingrese valor a buscar: ");
         
-        int valor2 = in.nextInt();
-        int pos2 = BusquedaBinaria.buscar(miEmpresa, valor2);
+        int valor3 = in.nextInt();
+        int pos3 = BusquedaBinaria.buscar(miEmpresa, valor3);
         
-        System.out.println(miEmpresa.ImprimeDatoDeArregloOrdenado(pos2));
+        System.out.println(miEmpresa.ImprimeDatoDeArregloOrdenado(pos3));
         System.out.println("Tiempo de ejecución: " + BusquedaBinaria.getContador());
         
     }

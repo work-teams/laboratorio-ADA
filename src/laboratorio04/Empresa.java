@@ -51,6 +51,7 @@ public class Empresa {
     // Imprime datos del arreglo de arregloEmpleadosDesordenado.
     public String ImprimeDatoDeArregloDesordenado(int pos) {
         if (pos != -1) {
+           // System.out.println(arregloEmpleadosDesordenado[pos]);
             return arregloEmpleadosDesordenado[pos].toString();
         }
         else {
