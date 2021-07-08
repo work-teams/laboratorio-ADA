@@ -54,6 +54,8 @@ public class PruebaAplicacion {
         
         ArrayList<String> miArrayList = new ArrayList<>(20);
         System.out.println(miArrayList.size());
+        
+        System.out.println(100250%19);
     }
 
 }

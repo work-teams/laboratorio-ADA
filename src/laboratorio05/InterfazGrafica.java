@@ -31,18 +31,26 @@ public class InterfazGrafica extends javax.swing.JFrame {
         initComponents();
 
         for (int i = 0; i < codigo.length; i++) {
+            //REASIGNACION LINEAL
             miInstitutoLineal.insertarLineal(codigo[i], nombre[i], pension[i]);
-            miInstitutoCuadratica.insertarLineal(codigo[i], nombre[i], pension[i]);
-            miInstitutoDobleDireccion.insertarLineal(codigo[i], nombre[i], pension[i]);
-            miInstitutoAnidados.insertarLineal(codigo[i], nombre[i], pension[i]);
-            miInstitutoEncadenamineto.insertarLineal(codigo[i], nombre[i], pension[i]);
+            
+            //REASIGNACION CUADRATICA
+            miInstitutoCuadratica.insertarCuadratica(codigo[i], nombre[i], pension[i]);
+            
+            //miInstitutoDobleDireccion.insertar(codigo[i], nombre[i], pension[i]);
+            //miInstitutoAnidados.insertar(codigo[i], nombre[i], pension[i]);
+            //miInstitutoEncadenamineto.insertar(codigo[i], nombre[i], pension[i]);
         }
 
+        //REASIGNACION LINEAL
         tablaLineal.setModel(setearTabla(miInstitutoLineal));
+        
+        //REASIGNACION CUADRATICA
         tablaCuadratica.setModel(setearTabla(miInstitutoCuadratica));
-        tablaDobleDireccion.setModel(setearTabla(miInstitutoDobleDireccion));
-        tablaAnidados.setModel(setearTabla(miInstitutoAnidados));
-        tablaEncadenamiento.setModel(setearTabla(miInstitutoEncadenamineto));
+        
+        //tablaDobleDireccion.setModel(setearTabla(miInstitutoDobleDireccion));
+        //tablaAnidados.setModel(setearTabla(miInstitutoAnidados));
+        //tablaEncadenamiento.setModel(setearTabla(miInstitutoEncadenamineto));
 
     }
 
@@ -99,6 +107,7 @@ public class InterfazGrafica extends javax.swing.JFrame {
         jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel15.setLayout(new java.awt.BorderLayout());
 
+        tablaLineal.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         tablaLineal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -122,6 +131,8 @@ public class InterfazGrafica extends javax.swing.JFrame {
         jPanel17.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel17.setLayout(new java.awt.BorderLayout());
 
+        tablaCuadratica.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        tablaCuadratica.setForeground(new java.awt.Color(255, 0, 51));
         tablaCuadratica.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -145,6 +156,8 @@ public class InterfazGrafica extends javax.swing.JFrame {
         jPanel18.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel18.setLayout(new java.awt.BorderLayout());
 
+        tablaDobleDireccion.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        tablaDobleDireccion.setForeground(new java.awt.Color(51, 153, 255));
         tablaDobleDireccion.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -168,6 +181,8 @@ public class InterfazGrafica extends javax.swing.JFrame {
         jPanel19.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel19.setLayout(new java.awt.BorderLayout());
 
+        tablaAnidados.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        tablaAnidados.setForeground(new java.awt.Color(51, 102, 0));
         tablaAnidados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -191,6 +206,8 @@ public class InterfazGrafica extends javax.swing.JFrame {
         jPanel20.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel20.setLayout(new java.awt.BorderLayout());
 
+        tablaEncadenamiento.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        tablaEncadenamiento.setForeground(new java.awt.Color(204, 0, 204));
         tablaEncadenamiento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -300,10 +317,13 @@ public class InterfazGrafica extends javax.swing.JFrame {
             String nombre = txtNombre.getText().toUpperCase();
             float pension = Float.parseFloat(txtPension.getText());
             
-            // Repetir esto para cada caso de hash
+            //REASIGNACION LINEAL
             miInstitutoLineal.insertarLineal(codigo, nombre, pension);
             tablaLineal.setModel(setearTabla(miInstitutoLineal));
-            // Repetir esto para cada caso de hash
+            
+            //REASIGNACION CUADRATICA
+            miInstitutoCuadratica.insertarCuadratica(codigo, nombre, pension);
+            tablaCuadratica.setModel(setearTabla(miInstitutoCuadratica));
             
         } catch (Exception e) {
         }
@@ -315,7 +335,7 @@ public class InterfazGrafica extends javax.swing.JFrame {
         try {
             int codigo = Integer.parseInt(txtCodigo.getText());
             
-            // Repetir esto para cada caso de hash
+            //REASIGNACION LINEAL
             int pos1 = miInstitutoLineal.buscarLineal(codigo);
             if (pos1 != -1) {
                 String code1 = "" + miInstitutoLineal.getCodigoDelAlumno(pos1);
@@ -326,7 +346,18 @@ public class InterfazGrafica extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "No encontrado");
             }
-            // Repetir esto para cada caso de hash
+            
+            //REASIGNACION CUADRATICA
+            int pos2 = miInstitutoCuadratica.buscarCuadratica(codigo);
+            if (pos2 != -1) {
+                String code2 = "" + miInstitutoCuadratica.getCodigoDelAlumno(pos2);
+                String name2 = "" + miInstitutoCuadratica.getNombreDelAlumno(pos2);
+                String money2 = "" + miInstitutoCuadratica.getPensionDelAlumno(pos2);
+                JOptionPane.showMessageDialog(null, "ENCONTRADO EN LA POSICIÓN: " + pos2 + "\nUTILIZANDO REASINGNACIÓN CUADRÁTICA\n"
+                        + "\nCodigo: " + code2 + "\nNombre: " + name2 + "\nPension: " + money2);
+            } else {
+                JOptionPane.showMessageDialog(null, "No encontrado");
+            }
             
         } catch (Exception e) {
         }
@@ -337,11 +368,15 @@ public class InterfazGrafica extends javax.swing.JFrame {
         try {
             int codigo = Integer.parseInt(txtCodigo.getText());
             
-            // Repetir esto para cada caso de hash
+            //REASIGNACION LINEAL
             int pos1 = miInstitutoLineal.buscarLineal(codigo);
             miInstitutoLineal.eliminarUniversal(pos1);
             tablaLineal.setModel(setearTabla(miInstitutoLineal));
-            // Repetir esto para cada caso de hash
+            
+            //REASIGNACION CUADRATICA
+            int pos2 = miInstitutoCuadratica.buscarCuadratica(codigo);
+            miInstitutoCuadratica.eliminarUniversal(pos2);
+            tablaCuadratica.setModel(setearTabla(miInstitutoCuadratica));
 
         } catch (Exception e) {
         }

@@ -112,4 +112,64 @@ public class Instituto {
             JOptionPane.showMessageDialog(null, "Codigo no existe");
         }
     }
+    
+    // REASIGNACIÓN POR PRUEBA CUADRATICA
+    public void insertarCuadratica(int codigo, String nombre, float pension) {
+        int pos = hash(codigo);
+        if (getCodigoDelAlumno(pos) == 0) {
+            setCodigoDelAlumno(codigo, pos);
+            setNombreDelAlumno(nombre, pos);
+            setPensionDelAlumno(pension, pos);
+        } else {
+            int i = 1;
+            int posNew = pos + (i * i);
+            boolean flag = false;
+            while (posNew<getNumeroDeAlumnos() && flag == false) {
+                if (getCodigoDelAlumno(posNew) == 0) {
+                    setCodigoDelAlumno(codigo, posNew);
+                    setNombreDelAlumno(nombre, posNew);
+                    setPensionDelAlumno(pension, posNew);
+                    flag = true;
+                }
+                i = i + 1;
+                posNew = pos + (i * i);
+            }
+            if (!flag) {
+                posNew = 0;
+                while (posNew < getNumeroDeAlumnos() && getCodigoDelAlumno(posNew)!=0) {
+                    posNew = posNew + 1;
+                }
+                if (getCodigoDelAlumno(posNew)==0) {
+                    setCodigoDelAlumno(codigo, posNew);
+                    setNombreDelAlumno(nombre, posNew);
+                    setPensionDelAlumno(pension, posNew);
+                }
+            }
+        }
+    }
+    
+    public int buscarCuadratica(int codigo) {
+        int pos = hash(codigo);
+        if (getCodigoDelAlumno(pos) == codigo) {
+            return pos;
+        } else {
+            int i = 1;
+            int posNew = pos + (i * i);
+            while (posNew < getNumeroDeAlumnos()) {
+                if (getCodigoDelAlumno(posNew) == codigo) {
+                    return posNew;
+                }
+                i = i + 1;
+                posNew = pos + (i * i);
+            }
+            posNew = 0;
+            while (posNew < getNumeroDeAlumnos()) {
+                if (getCodigoDelAlumno(posNew) == codigo) {
+                    return posNew;
+                }
+                posNew = posNew + 1;
+            }
+            return -1;
+        }
+    }
 }
