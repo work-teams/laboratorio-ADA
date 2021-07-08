@@ -89,17 +89,13 @@ public class Instituto {
             return pos;
         } else { //Se produce colisión: Solución por reasignación por prueba lineal
             pos_sigte = pos + 1;
-            while (pos_sigte < getNumeroDeAlumnos() && getCodigoDelAlumno(pos_sigte) != 0 && pos_sigte != pos && getCodigoDelAlumno(pos) != codigo) {
-                pos_sigte++;
-                if (pos_sigte == getNumeroDeAlumnos()) {
-                    pos_sigte = 0;
+            while (pos_sigte < getNumeroDeAlumnos()) {
+                if (getCodigoDelAlumno(pos_sigte) == codigo) {
+                    return pos_sigte;
                 }
+                pos_sigte++;
             }
-            if (getCodigoDelAlumno(pos_sigte) == 0 || pos_sigte == pos) {
-                return -1; //código no existe
-            } else {
-                return pos_sigte;
-            }
+            return -1; //código no existe
         }
     }
     
