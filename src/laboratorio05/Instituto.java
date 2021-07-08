@@ -5,6 +5,8 @@
  */
 package laboratorio05;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author krypt97
@@ -53,7 +55,7 @@ public class Instituto {
         return clave % 19;
     }
 
-    public boolean Insertar(int codigo, String nombre, float pension) {
+    public boolean insertarLineal(int codigo, String nombre, float pension) {
         int pos, pos_sigte;
         pos = hash(codigo);
         if (getCodigoDelAlumno(pos) == 0) {
@@ -80,7 +82,7 @@ public class Instituto {
         }
     }
 
-    public int Buscar(int codigo) {
+    public int buscarLineal(int codigo) {
         int pos, pos_sigte;
         pos = hash(codigo);
         if (getCodigoDelAlumno(pos) == codigo) {
@@ -98,6 +100,16 @@ public class Instituto {
             } else {
                 return pos_sigte;
             }
+        }
+    }
+    
+    public void eliminarUniversal(int pos) {
+        if (pos != -1) {
+            setCodigoDelAlumno(0, pos);
+            setNombreDelAlumno("", pos);
+            setPensionDelAlumno(0.0f, pos);
+        } else {
+            JOptionPane.showMessageDialog(null, "Codigo no existe");
         }
     }
 }

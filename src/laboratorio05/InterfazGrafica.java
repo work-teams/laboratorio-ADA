@@ -31,11 +31,11 @@ public class InterfazGrafica extends javax.swing.JFrame {
         initComponents();
 
         for (int i = 0; i < codigo.length; i++) {
-            miInstitutoLineal.Insertar(codigo[i], nombre[i], pension[i]);
-            miInstitutoCuadratica.Insertar(codigo[i], nombre[i], pension[i]);
-            miInstitutoDobleDireccion.Insertar(codigo[i], nombre[i], pension[i]);
-            miInstitutoAnidados.Insertar(codigo[i], nombre[i], pension[i]);
-            miInstitutoEncadenamineto.Insertar(codigo[i], nombre[i], pension[i]);
+            miInstitutoLineal.insertarLineal(codigo[i], nombre[i], pension[i]);
+            miInstitutoCuadratica.insertarLineal(codigo[i], nombre[i], pension[i]);
+            miInstitutoDobleDireccion.insertarLineal(codigo[i], nombre[i], pension[i]);
+            miInstitutoAnidados.insertarLineal(codigo[i], nombre[i], pension[i]);
+            miInstitutoEncadenamineto.insertarLineal(codigo[i], nombre[i], pension[i]);
         }
 
         tablaLineal.setModel(setearTabla(miInstitutoLineal));
@@ -300,9 +300,10 @@ public class InterfazGrafica extends javax.swing.JFrame {
             String nombre = txtNombre.getText().toUpperCase();
             float pension = Float.parseFloat(txtPension.getText());
             
-            miInstitutoLineal.Insertar(codigo, nombre, pension);
-            
+            // Repetir esto para cada caso de hash
+            miInstitutoLineal.insertarLineal(codigo, nombre, pension);
             tablaLineal.setModel(setearTabla(miInstitutoLineal));
+            // Repetir esto para cada caso de hash
             
         } catch (Exception e) {
         }
@@ -313,8 +314,9 @@ public class InterfazGrafica extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             int codigo = Integer.parseInt(txtCodigo.getText());
-            int pos1 = miInstitutoLineal.Buscar(codigo);
             
+            // Repetir esto para cada caso de hash
+            int pos1 = miInstitutoLineal.buscarLineal(codigo);
             if (pos1 != -1) {
                 String code1 = "" + miInstitutoLineal.getCodigoDelAlumno(pos1);
                 String name1 = "" + miInstitutoLineal.getNombreDelAlumno(pos1);
@@ -324,6 +326,7 @@ public class InterfazGrafica extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "No encontrado");
             }
+            // Repetir esto para cada caso de hash
             
         } catch (Exception e) {
         }
@@ -331,6 +334,17 @@ public class InterfazGrafica extends javax.swing.JFrame {
 
     private void eliminar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminar
         // TODO add your handling code here:
+        try {
+            int codigo = Integer.parseInt(txtCodigo.getText());
+            
+            // Repetir esto para cada caso de hash
+            int pos1 = miInstitutoLineal.buscarLineal(codigo);
+            miInstitutoLineal.eliminarUniversal(pos1);
+            tablaLineal.setModel(setearTabla(miInstitutoLineal));
+            // Repetir esto para cada caso de hash
+
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_eliminar
 
     /**
