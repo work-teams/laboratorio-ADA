@@ -51,6 +51,31 @@ public class Instituto {
         return TAM_TABLA;
     }
 
+    public static String convertirEntero(String cod) {
+        String cadena="";
+        char[] aCaracteres = cod.toCharArray();
+        boolean flag = false;
+        //int[] arr={0,1,2,3,4,5,6,7,8,9};
+            for (int i=0; i<aCaracteres.length; i++){
+                for(int j=0; j<10; j++){
+                //char car = Integer.toString(j).charAt(0);    
+                char car = Character.forDigit(j,10);
+                char var = aCaracteres[i];
+                    if(Character.compare(var,car)==0){
+                    //if(Character.getNumericValue(aCaracteres[i])==j){
+                        cadena = cadena + aCaracteres[i];
+                        flag=true;
+                    }
+                }
+                if(!(flag && true)){
+                    int num = cod.charAt(i);
+                    cadena = cadena + String.valueOf(num);
+                }
+                flag=false;
+            }
+        return cadena;
+    }
+    
     public int hash(int clave) {
         return clave % 19;
     }

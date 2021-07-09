@@ -313,7 +313,9 @@ public class InterfazGrafica extends javax.swing.JFrame {
     private void insertar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertar
         // TODO add your handling code here:
         try {
-            int codigo = Integer.parseInt(txtCodigo.getText());
+            String cod = txtCodigo.getText();
+            String cad = miInstitutoLineal.convertirEntero(cod);
+            int codigo = Integer.parseInt(cad);
             String nombre = txtNombre.getText().toUpperCase();
             float pension = Float.parseFloat(txtPension.getText());
             
