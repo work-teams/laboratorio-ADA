@@ -6,6 +6,7 @@
 package laboratorio05;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 /**
@@ -63,6 +64,8 @@ public class PruebaAplicacion {
         nums2 = nums1;
         System.out.println(nums2[0]);
         System.out.println(nums2[1]);
+        
+        LinkedList<Alumno> miAlumnos = new LinkedList<>();
     }
 
 }

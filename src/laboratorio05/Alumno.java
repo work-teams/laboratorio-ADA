@@ -5,6 +5,8 @@
  */
 package laboratorio05;
 
+import java.util.LinkedList;
+
 /**
  *
  * @author krypt97
@@ -13,7 +15,12 @@ public class Alumno {
     private int codigoDelAlumno;
     private String nombreDelAlumno;
     private float pensionDelAlumno;
+    
+    // Lista enlanza para REASIGNACIÓN POR ENCADENAMIENTO
+    private LinkedList<Alumno> miAlumnoSgte = new LinkedList<>();
 
+    /*---------------------------------------------------------------------------------------------------*/
+    // CODIGO DEL EJEMPLO
     public Alumno(int codigoDelAlumno, String nombreDelAlumno, float pensionDelAlumno) {
         this.codigoDelAlumno = codigoDelAlumno;
         this.nombreDelAlumno = nombreDelAlumno;
@@ -42,5 +49,19 @@ public class Alumno {
 
     public void setPensionDelAlumno(float pensionDelAlumno) {
         this.pensionDelAlumno = pensionDelAlumno;
+    }
+
+    /*---------------------------------------------------------------------------------------------------*/
+    // METODOS AUXILIARES NECESARIOS - APLICADOS EN REASIGNACIÓN POR ENCADENAMIENTO (ARREGLO + LISTAS ENLAZADAS)
+    public LinkedList<Alumno> getMiAlumnoSgte() {
+        return miAlumnoSgte;
+    }
+
+    public void setMiAlumnoSgte(Alumno miAlumnoSgte) {
+        this.miAlumnoSgte.add(miAlumnoSgte);
+    }
+    
+    public void removerMiAlumnoSgte(int index) {
+        this.miAlumnoSgte.remove(index);
     }
 }

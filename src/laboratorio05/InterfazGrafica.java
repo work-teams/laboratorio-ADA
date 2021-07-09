@@ -33,28 +33,34 @@ public class InterfazGrafica extends javax.swing.JFrame {
         for (int i = 0; i < codigo.length; i++) {
             //REASIGNACION LINEAL
             miInstitutoLineal.insertarLineal(codigo[i], nombre[i], pension[i]);
-            
+
             //REASIGNACION CUADRATICA
             miInstitutoCuadratica.insertarCuadratica(codigo[i], nombre[i], pension[i]);
-            
-            //miInstitutoDobleDireccion.insertar(codigo[i], nombre[i], pension[i]);
-            
+
             //REASIGNACION ANIDADOS
             miInstitutoAnidados.insertarAnidados(codigo[i], nombre[i], pension[i]);
-            
-            //miInstitutoEncadenamineto.insertar(codigo[i], nombre[i], pension[i]);
+
+            //REASIGNACION ENCADENAMIENTO
+            miInstitutoEncadenamineto.insertarEncadenamiento(codigo[i], nombre[i], pension[i]);
+
+            //REASIGNACION DOBLE DIRECCION
+            //miInstitutoDobleDireccion.insertar(codigo[i], nombre[i], pension[i]);
         }
 
         //REASIGNACION LINEAL
         tablaLineal.setModel(setearTabla(miInstitutoLineal));
-        
+
         //REASIGNACION CUADRATICA
         tablaCuadratica.setModel(setearTabla(miInstitutoCuadratica));
-        
-        //tablaDobleDireccion.setModel(setearTabla(miInstitutoDobleDireccion));
-        tablaAnidados.setModel(setearTablaAnidados(miInstitutoAnidados));
-        //tablaEncadenamiento.setModel(setearTabla(miInstitutoEncadenamineto));
 
+        //REASIGNACION ANIDADOS
+        tablaAnidados.setModel(setearTablaAnidados(miInstitutoAnidados));
+
+        //REASIGNACION ENCADENAMIENTO
+        tablaEncadenamiento.setModel(setearTablaEncadenamiento(miInstitutoEncadenamineto));
+
+        //REASIGNACION DOBLE DIRECCION
+        //tablaDobleDireccion.setModel(setearTabla(miInstitutoDobleDireccion));
     }
 
     /**
@@ -191,7 +197,7 @@ public class InterfazGrafica extends javax.swing.JFrame {
 
             },
             new String [] {
-                "POSICION", "CODIGO", "NOMBRE", "PENSION"
+                "POSICION", "CODIGO", "INSERTADOS LISTA ENLAZADA"
             }
         ));
         tablaEncadenamiento.setRowHeight(21);
@@ -321,19 +327,23 @@ public class InterfazGrafica extends javax.swing.JFrame {
             int codigo = Integer.parseInt(cad);
             String nombre = txtNombre.getText().toUpperCase();
             float pension = Float.parseFloat(txtPension.getText());
-            
+
             //REASIGNACION LINEAL
             miInstitutoLineal.insertarLineal(codigo, nombre, pension);
             tablaLineal.setModel(setearTabla(miInstitutoLineal));
-            
+
             //REASIGNACION CUADRATICA
             miInstitutoCuadratica.insertarCuadratica(codigo, nombre, pension);
             tablaCuadratica.setModel(setearTabla(miInstitutoCuadratica));
-            
+
             //REASIGNACION ANIDADOS
             miInstitutoAnidados.insertarAnidados(codigo, nombre, pension);
             tablaAnidados.setModel(setearTablaAnidados(miInstitutoAnidados));
-            
+
+            //REASIGNACION ENCADENAMIENTO
+            miInstitutoEncadenamineto.insertarEncadenamiento(codigo, nombre, pension);
+            tablaEncadenamiento.setModel(setearTablaEncadenamiento(miInstitutoEncadenamineto));
+
         } catch (Exception e) {
             limpiarTodosLosCampos();
             errorOcurrido();
@@ -347,43 +357,79 @@ public class InterfazGrafica extends javax.swing.JFrame {
             String cod = txtCodigo.getText();
             String cad = Instituto.convertirEntero(cod);
             int codigo = Integer.parseInt(cad);
-            
+
             //REASIGNACION LINEAL
             int pos1 = miInstitutoLineal.buscarLineal(codigo);
             if (pos1 != -1) {
                 String code1 = "" + miInstitutoLineal.getCodigoDelAlumno(pos1);
                 String name1 = "" + miInstitutoLineal.getNombreDelAlumno(pos1);
                 String money1 = "" + miInstitutoLineal.getPensionDelAlumno(pos1);
+                
+                // INICIO MENSAJE
                 JOptionPane.showMessageDialog(null, "ENCONTRADO EN LA POSICIÓN: " + pos1 + "\nUTILIZANDO REASINGNACIÓN POR PRUEBA LINEAL\n"
                         + "\nCodigo: " + code1 + "\nNombre: " + name1 + "\nPension: " + money1);
+                System.out.println("ENCONTRADO EN LA POSICIÓN: " + pos1 + "\nUTILIZANDO REASINGNACIÓN POR PRUEBA LINEAL\n"
+                        + "\nCodigo: " + code1 + "\nNombre: " + name1 + "\nPension: " + money1 + "\n-----------------------------------------------------\n");
+                // FIN MENSAJE
+                
             } else {
                 JOptionPane.showMessageDialog(null, "No encontrado");
             }
-            
+
             //REASIGNACION CUADRATICA
             int pos2 = miInstitutoCuadratica.buscarCuadratica(codigo);
             if (pos2 != -1) {
                 String code2 = "" + miInstitutoCuadratica.getCodigoDelAlumno(pos2);
                 String name2 = "" + miInstitutoCuadratica.getNombreDelAlumno(pos2);
                 String money2 = "" + miInstitutoCuadratica.getPensionDelAlumno(pos2);
+                
+                // INICIO MENSAJE
                 JOptionPane.showMessageDialog(null, "ENCONTRADO EN LA POSICIÓN: " + pos2 + "\nUTILIZANDO REASINGNACIÓN CUADRÁTICA\n"
                         + "\nCodigo: " + code2 + "\nNombre: " + name2 + "\nPension: " + money2);
+                System.out.println("ENCONTRADO EN LA POSICIÓN: " + pos2 + "\nUTILIZANDO REASINGNACIÓN CUADRÁTICA\n"
+                        + "\nCodigo: " + code2 + "\nNombre: " + name2 + "\nPension: " + money2 + "\n-----------------------------------------------------\n");
+                // FIN MENSAJE
+                
             } else {
                 JOptionPane.showMessageDialog(null, "No encontrado");
             }
-            
+
             //REASIGNACION ANIDADOS
             int[] pos3 = miInstitutoAnidados.buscarAnidados(codigo);
             if (pos3[0] != -1) {
                 String code3 = "" + miInstitutoAnidados.getCodigoDelAlumnoMatriz(pos3[0], pos3[1]);
                 String name3 = "" + miInstitutoAnidados.getNombreDelAlumnoMatriz(pos3[0], pos3[1]);
                 String money3 = "" + miInstitutoAnidados.getPensionDelAlumnoMatriz(pos3[0], pos3[1]);
-                JOptionPane.showMessageDialog(null, "ENCONTRADO EN LA POSICIÓN: [" + pos3[0] + " , " + (pos3[1]+1) + "]\nUTILIZANDO REASINGNACIÓN  POR ARREGLOS ANIDADOS\n"
+                
+                // INICIO MENSAJE
+                JOptionPane.showMessageDialog(null, "ENCONTRADO EN LA POSICIÓN: [" + pos3[0] + " , " + (pos3[1] + 1) + "] DE LA MATRIZ\nUTILIZANDO REASINGNACIÓN  POR ARREGLOS ANIDADOS\n"
                         + "\nCodigo: " + code3 + "\nNombre: " + name3 + "\nPension: " + money3);
+                System.out.println("ENCONTRADO EN LA POSICIÓN: [" + pos3[0] + " , " + (pos3[1] + 1) + "] DE LA MATRIZ\nUTILIZANDO REASINGNACIÓN  POR ARREGLOS ANIDADOS\n"
+                        + "\nCodigo: " + code3 + "\nNombre: " + name3 + "\nPension: " + money3 + "\n-----------------------------------------------------\n");
+                // FIN MENSAJE
+                
             } else {
                 JOptionPane.showMessageDialog(null, "No encontrado");
             }
-            
+
+            //REASIGNACION ENCADENAMIENTO
+            int[] pos4 = miInstitutoEncadenamineto.buscarEncadenamiento(codigo);
+            if (pos4[0] != -1) {
+                String code4 = "" + miInstitutoEncadenamineto.getCodigoDelAlumnoArrayLinkedList(pos4);
+                String name4 = "" + miInstitutoEncadenamineto.getNombreDelAlumnoArrayLinkedList(pos4);
+                String money4 = "" + miInstitutoEncadenamineto.getPensionDelAlumnoArrayLinkedList(pos4);
+                
+                // INICIO MENSAJE
+                JOptionPane.showMessageDialog(null, "ENCONTRADO EN LA POSICIÓN: [" + pos4[0] + "] DEL VECTOR  Y  [" + (pos4[1] + 1) + "] DE LA LISTA ENLAZADA\nUTILIZANDO REASINGNACIÓN  POR ENCADENAMIENTO\n"
+                        + "\nCodigo: " + code4 + "\nNombre: " + name4 + "\nPension: " + money4);
+                System.out.println("ENCONTRADO EN LA POSICIÓN: [" + pos4[0] + "]  DEL VECTOR  Y  [" + (pos4[1] + 1) + "] DE LA LISTA ENLAZADA\nUTILIZANDO REASINGNACIÓN  POR ENCADENAMIENTO\n"
+                        + "\nCodigo: " + code4 + "\nNombre: " + name4 + "\nPension: " + money4 + "\n-----------------------------------------------------\n");
+                // FIN MENSAJE
+                
+            } else {
+                JOptionPane.showMessageDialog(null, "No encontrado");
+            }
+
         } catch (Exception e) {
             errorOcurrido();
         }
@@ -395,21 +441,26 @@ public class InterfazGrafica extends javax.swing.JFrame {
             String cod = txtCodigo.getText();
             String cad = Instituto.convertirEntero(cod);
             int codigo = Integer.parseInt(cad);
-            
+
             //REASIGNACION LINEAL
             int pos1 = miInstitutoLineal.buscarLineal(codigo);
             miInstitutoLineal.eliminarUniversal(pos1);
             tablaLineal.setModel(setearTabla(miInstitutoLineal));
-            
+
             //REASIGNACION CUADRATICA
             int pos2 = miInstitutoCuadratica.buscarCuadratica(codigo);
             miInstitutoCuadratica.eliminarUniversal(pos2);
             tablaCuadratica.setModel(setearTabla(miInstitutoCuadratica));
-            
+
             //REASIGNACION ANIDADOS
             int[] pos3 = miInstitutoAnidados.buscarAnidados(codigo);
             miInstitutoAnidados.eliminarAnidados(pos3);
             tablaAnidados.setModel(setearTablaAnidados(miInstitutoAnidados));
+
+            //REASIGNACION ENCADENAMIENTO
+            int[] pos4 = miInstitutoEncadenamineto.buscarEncadenamiento(codigo);
+            miInstitutoEncadenamineto.eliminarEncadenamiento(pos4);
+            tablaEncadenamiento.setModel(setearTablaEncadenamiento(miInstitutoEncadenamineto));
 
         } catch (Exception e) {
             errorOcurrido();
@@ -439,7 +490,7 @@ public class InterfazGrafica extends javax.swing.JFrame {
         }
         return new DefaultTableModel(misDatos, columnas);
     }
-    
+
     private DefaultTableModel setearTablaAnidados(Instituto miInstituto) {
         String[] columnas = {"POSICION", "CÓDIGO 01", "CÓDIGO 02", "CÓDIGO 03"};
         Object[][] misDatos = new Object[miInstituto.getNumeroDeAlumnos()][4];
@@ -448,6 +499,17 @@ public class InterfazGrafica extends javax.swing.JFrame {
             misDatos[i][1] = miInstituto.getCodigoDelAlumnoMatriz(i, 0);
             misDatos[i][2] = miInstituto.getCodigoDelAlumnoMatriz(i, 1);
             misDatos[i][3] = miInstituto.getCodigoDelAlumnoMatriz(i, 2);
+        }
+        return new DefaultTableModel(misDatos, columnas);
+    }
+
+    private DefaultTableModel setearTablaEncadenamiento(Instituto miInstituto) {
+        String[] columnas = {"POSICION", "CÓDIGO ARREGLO", "INSERTADOS LISTA ENLAZADA"};
+        Object[][] misDatos = new Object[miInstituto.getNumeroDeAlumnos()][3];
+        for (int i = 0; i < miInstituto.getNumeroDeAlumnos(); i++) {
+            misDatos[i][0] = i;
+            misDatos[i][1] = miInstituto.getCodigoDelAlumno(i);
+            misDatos[i][2] = miInstituto.getMiAlumnoSgte(i).size();
         }
         return new DefaultTableModel(misDatos, columnas);
     }
@@ -493,13 +555,13 @@ public class InterfazGrafica extends javax.swing.JFrame {
         txtPension.setText("");
         txtCodigo.requestFocus();
     }
-    
+
     private void limpiarManteniendoCampoCodigo() {
         txtNombre.setText("");
         txtPension.setText("");
         txtCodigo.requestFocus();
     }
-    
+
     private void errorOcurrido() {
         JOptionPane.showMessageDialog(null, "ALGÚN PARAMETRO ENVIADO NO ES CORRECTO\n POR FAVOR VUELVA A INTENTAR");
     }
