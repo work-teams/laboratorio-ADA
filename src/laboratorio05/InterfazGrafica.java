@@ -80,14 +80,14 @@ public class InterfazGrafica extends javax.swing.JFrame {
         jPanel19 = new javax.swing.JPanel();
         jScrollPane8 = new javax.swing.JScrollPane();
         tablaAnidados = new javax.swing.JTable();
-        DOBLEDIRECCION = new javax.swing.JPanel();
-        jPanel18 = new javax.swing.JPanel();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        tablaDobleDireccion = new javax.swing.JTable();
         ENCADENAMIENTO = new javax.swing.JPanel();
         jPanel20 = new javax.swing.JPanel();
         jScrollPane9 = new javax.swing.JScrollPane();
         tablaEncadenamiento = new javax.swing.JTable();
+        DOBLEDIRECCION = new javax.swing.JPanel();
+        jPanel18 = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        tablaDobleDireccion = new javax.swing.JTable();
         FORMULARIO = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -135,7 +135,7 @@ public class InterfazGrafica extends javax.swing.JFrame {
         jPanel17.setLayout(new java.awt.BorderLayout());
 
         tablaCuadratica.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        tablaCuadratica.setForeground(new java.awt.Color(255, 0, 51));
+        tablaCuadratica.setForeground(new java.awt.Color(255, 102, 102));
         tablaCuadratica.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -178,31 +178,6 @@ public class InterfazGrafica extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("ANIDADOS", ANIDADOS);
 
-        DOBLEDIRECCION.setPreferredSize(new java.awt.Dimension(455, 426));
-        DOBLEDIRECCION.setLayout(new java.awt.BorderLayout());
-
-        jPanel18.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel18.setLayout(new java.awt.BorderLayout());
-
-        tablaDobleDireccion.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        tablaDobleDireccion.setForeground(new java.awt.Color(51, 153, 255));
-        tablaDobleDireccion.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "POSICION", "CODIGO", "NOMBRE", "PENSION"
-            }
-        ));
-        tablaDobleDireccion.setRowHeight(21);
-        jScrollPane7.setViewportView(tablaDobleDireccion);
-
-        jPanel18.add(jScrollPane7, java.awt.BorderLayout.CENTER);
-
-        DOBLEDIRECCION.add(jPanel18, java.awt.BorderLayout.CENTER);
-
-        jTabbedPane1.addTab("DOBLE DIRECCIÓN", DOBLEDIRECCION);
-
         ENCADENAMIENTO.setPreferredSize(new java.awt.Dimension(455, 426));
         ENCADENAMIENTO.setLayout(new java.awt.BorderLayout());
 
@@ -227,6 +202,31 @@ public class InterfazGrafica extends javax.swing.JFrame {
         ENCADENAMIENTO.add(jPanel20, java.awt.BorderLayout.CENTER);
 
         jTabbedPane1.addTab("ENCADENAMIENTO", ENCADENAMIENTO);
+
+        DOBLEDIRECCION.setPreferredSize(new java.awt.Dimension(455, 426));
+        DOBLEDIRECCION.setLayout(new java.awt.BorderLayout());
+
+        jPanel18.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel18.setLayout(new java.awt.BorderLayout());
+
+        tablaDobleDireccion.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        tablaDobleDireccion.setForeground(new java.awt.Color(51, 153, 255));
+        tablaDobleDireccion.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "POSICION", "CODIGO", "NOMBRE", "PENSION"
+            }
+        ));
+        tablaDobleDireccion.setRowHeight(21);
+        jScrollPane7.setViewportView(tablaDobleDireccion);
+
+        jPanel18.add(jScrollPane7, java.awt.BorderLayout.CENTER);
+
+        DOBLEDIRECCION.add(jPanel18, java.awt.BorderLayout.CENTER);
+
+        jTabbedPane1.addTab("DOBLE DIRECCIÓN", DOBLEDIRECCION);
 
         jPanel1.add(jTabbedPane1, java.awt.BorderLayout.CENTER);
 
@@ -317,7 +317,7 @@ public class InterfazGrafica extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             String cod = txtCodigo.getText();
-            String cad = miInstitutoLineal.convertirEntero(cod);
+            String cad = Instituto.convertirEntero(cod);
             int codigo = Integer.parseInt(cad);
             String nombre = txtNombre.getText().toUpperCase();
             float pension = Float.parseFloat(txtPension.getText());
@@ -344,7 +344,9 @@ public class InterfazGrafica extends javax.swing.JFrame {
     private void buscar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar
         // TODO add your handling code here:
         try {
-            int codigo = Integer.parseInt(txtCodigo.getText());
+            String cod = txtCodigo.getText();
+            String cad = Instituto.convertirEntero(cod);
+            int codigo = Integer.parseInt(cad);
             
             //REASIGNACION LINEAL
             int pos1 = miInstitutoLineal.buscarLineal(codigo);
@@ -390,7 +392,9 @@ public class InterfazGrafica extends javax.swing.JFrame {
     private void eliminar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminar
         // TODO add your handling code here:
         try {
-            int codigo = Integer.parseInt(txtCodigo.getText());
+            String cod = txtCodigo.getText();
+            String cad = Instituto.convertirEntero(cod);
+            int codigo = Integer.parseInt(cad);
             
             //REASIGNACION LINEAL
             int pos1 = miInstitutoLineal.buscarLineal(codigo);
