@@ -38,7 +38,10 @@ public class InterfazGrafica extends javax.swing.JFrame {
             miInstitutoCuadratica.insertarCuadratica(codigo[i], nombre[i], pension[i]);
             
             //miInstitutoDobleDireccion.insertar(codigo[i], nombre[i], pension[i]);
-            //miInstitutoAnidados.insertar(codigo[i], nombre[i], pension[i]);
+            
+            //REASIGNACION ANIDADOS
+            miInstitutoAnidados.insertarAnidados(codigo[i], nombre[i], pension[i]);
+            
             //miInstitutoEncadenamineto.insertar(codigo[i], nombre[i], pension[i]);
         }
 
@@ -49,7 +52,7 @@ public class InterfazGrafica extends javax.swing.JFrame {
         tablaCuadratica.setModel(setearTabla(miInstitutoCuadratica));
         
         //tablaDobleDireccion.setModel(setearTabla(miInstitutoDobleDireccion));
-        //tablaAnidados.setModel(setearTabla(miInstitutoAnidados));
+        tablaAnidados.setModel(setearTablaAnidados(miInstitutoAnidados));
         //tablaEncadenamiento.setModel(setearTabla(miInstitutoEncadenamineto));
 
     }
@@ -73,14 +76,14 @@ public class InterfazGrafica extends javax.swing.JFrame {
         jPanel17 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         tablaCuadratica = new javax.swing.JTable();
-        DOBLEDIRECCION = new javax.swing.JPanel();
-        jPanel18 = new javax.swing.JPanel();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        tablaDobleDireccion = new javax.swing.JTable();
         ANIDADOS = new javax.swing.JPanel();
         jPanel19 = new javax.swing.JPanel();
         jScrollPane8 = new javax.swing.JScrollPane();
         tablaAnidados = new javax.swing.JTable();
+        DOBLEDIRECCION = new javax.swing.JPanel();
+        jPanel18 = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        tablaDobleDireccion = new javax.swing.JTable();
         ENCADENAMIENTO = new javax.swing.JPanel();
         jPanel20 = new javax.swing.JPanel();
         jScrollPane9 = new javax.swing.JScrollPane();
@@ -150,6 +153,31 @@ public class InterfazGrafica extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("CUADRATICA", CUADRATICA);
 
+        ANIDADOS.setPreferredSize(new java.awt.Dimension(455, 426));
+        ANIDADOS.setLayout(new java.awt.BorderLayout());
+
+        jPanel19.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel19.setLayout(new java.awt.BorderLayout());
+
+        tablaAnidados.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        tablaAnidados.setForeground(new java.awt.Color(51, 102, 0));
+        tablaAnidados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "POSICION", "CODIGO 01", "CODIGO 02", "CODIGO 03"
+            }
+        ));
+        tablaAnidados.setRowHeight(21);
+        jScrollPane8.setViewportView(tablaAnidados);
+
+        jPanel19.add(jScrollPane8, java.awt.BorderLayout.CENTER);
+
+        ANIDADOS.add(jPanel19, java.awt.BorderLayout.CENTER);
+
+        jTabbedPane1.addTab("ANIDADOS", ANIDADOS);
+
         DOBLEDIRECCION.setPreferredSize(new java.awt.Dimension(455, 426));
         DOBLEDIRECCION.setLayout(new java.awt.BorderLayout());
 
@@ -174,31 +202,6 @@ public class InterfazGrafica extends javax.swing.JFrame {
         DOBLEDIRECCION.add(jPanel18, java.awt.BorderLayout.CENTER);
 
         jTabbedPane1.addTab("DOBLE DIRECCIÓN", DOBLEDIRECCION);
-
-        ANIDADOS.setPreferredSize(new java.awt.Dimension(455, 426));
-        ANIDADOS.setLayout(new java.awt.BorderLayout());
-
-        jPanel19.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel19.setLayout(new java.awt.BorderLayout());
-
-        tablaAnidados.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        tablaAnidados.setForeground(new java.awt.Color(51, 102, 0));
-        tablaAnidados.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "POSICION", "CODIGO", "NOMBRE", "PENSION"
-            }
-        ));
-        tablaAnidados.setRowHeight(21);
-        jScrollPane8.setViewportView(tablaAnidados);
-
-        jPanel19.add(jScrollPane8, java.awt.BorderLayout.CENTER);
-
-        ANIDADOS.add(jPanel19, java.awt.BorderLayout.CENTER);
-
-        jTabbedPane1.addTab("ANIDADOS", ANIDADOS);
 
         ENCADENAMIENTO.setPreferredSize(new java.awt.Dimension(455, 426));
         ENCADENAMIENTO.setLayout(new java.awt.BorderLayout());
@@ -325,9 +328,15 @@ public class InterfazGrafica extends javax.swing.JFrame {
             miInstitutoCuadratica.insertarCuadratica(codigo, nombre, pension);
             tablaCuadratica.setModel(setearTabla(miInstitutoCuadratica));
             
+            //REASIGNACION ANIDADOS
+            miInstitutoAnidados.insertarAnidados(codigo, nombre, pension);
+            tablaAnidados.setModel(setearTablaAnidados(miInstitutoAnidados));
+            
         } catch (Exception e) {
+            limpiarTodosLosCampos();
+            errorOcurrido();
         }
-
+        limpiarManteniendoCampoCodigo();
     }//GEN-LAST:event_insertar
 
     private void buscar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar
@@ -359,7 +368,20 @@ public class InterfazGrafica extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "No encontrado");
             }
             
+            //REASIGNACION ANIDADOS
+            int[] pos3 = miInstitutoAnidados.buscarAnidados(codigo);
+            if (pos3[0] != -1) {
+                String code3 = "" + miInstitutoAnidados.getCodigoDelAlumnoMatriz(pos3[0], pos3[1]);
+                String name3 = "" + miInstitutoAnidados.getNombreDelAlumnoMatriz(pos3[0], pos3[1]);
+                String money3 = "" + miInstitutoAnidados.getPensionDelAlumnoMatriz(pos3[0], pos3[1]);
+                JOptionPane.showMessageDialog(null, "ENCONTRADO EN LA POSICIÓN: [" + pos3[0] + " , " + (pos3[1]+1) + "]\nUTILIZANDO REASINGNACIÓN  POR ARREGLOS ANIDADOS\n"
+                        + "\nCodigo: " + code3 + "\nNombre: " + name3 + "\nPension: " + money3);
+            } else {
+                JOptionPane.showMessageDialog(null, "No encontrado");
+            }
+            
         } catch (Exception e) {
+            errorOcurrido();
         }
     }//GEN-LAST:event_buscar
 
@@ -377,9 +399,16 @@ public class InterfazGrafica extends javax.swing.JFrame {
             int pos2 = miInstitutoCuadratica.buscarCuadratica(codigo);
             miInstitutoCuadratica.eliminarUniversal(pos2);
             tablaCuadratica.setModel(setearTabla(miInstitutoCuadratica));
+            
+            //REASIGNACION ANIDADOS
+            int[] pos3 = miInstitutoAnidados.buscarAnidados(codigo);
+            miInstitutoAnidados.eliminarAnidados(pos3);
+            tablaAnidados.setModel(setearTablaAnidados(miInstitutoAnidados));
 
         } catch (Exception e) {
+            errorOcurrido();
         }
+        limpiarTodosLosCampos();
     }//GEN-LAST:event_eliminar
 
     /**
@@ -401,6 +430,18 @@ public class InterfazGrafica extends javax.swing.JFrame {
             misDatos[i][1] = miInstituto.getCodigoDelAlumno(i);
             misDatos[i][2] = miInstituto.getNombreDelAlumno(i);
             misDatos[i][3] = miInstituto.getPensionDelAlumno(i);
+        }
+        return new DefaultTableModel(misDatos, columnas);
+    }
+    
+    private DefaultTableModel setearTablaAnidados(Instituto miInstituto) {
+        String[] columnas = {"POSICION", "CÓDIGO 01", "CÓDIGO 02", "CÓDIGO 03"};
+        Object[][] misDatos = new Object[miInstituto.getNumeroDeAlumnos()][4];
+        for (int i = 0; i < miInstituto.getNumeroDeAlumnos(); i++) {
+            misDatos[i][0] = i;
+            misDatos[i][1] = miInstituto.getCodigoDelAlumnoMatriz(i, 0);
+            misDatos[i][2] = miInstituto.getCodigoDelAlumnoMatriz(i, 1);
+            misDatos[i][3] = miInstituto.getCodigoDelAlumnoMatriz(i, 2);
         }
         return new DefaultTableModel(misDatos, columnas);
     }
@@ -439,4 +480,21 @@ public class InterfazGrafica extends javax.swing.JFrame {
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPension;
     // End of variables declaration//GEN-END:variables
+
+    private void limpiarTodosLosCampos() {
+        txtCodigo.setText("");
+        txtNombre.setText("");
+        txtPension.setText("");
+        txtCodigo.requestFocus();
+    }
+    
+    private void limpiarManteniendoCampoCodigo() {
+        txtNombre.setText("");
+        txtPension.setText("");
+        txtCodigo.requestFocus();
+    }
+    
+    private void errorOcurrido() {
+        JOptionPane.showMessageDialog(null, "ALGÚN PARAMETRO ENVIADO NO ES CORRECTO\n POR FAVOR VUELVA A INTENTAR");
+    }
 }
