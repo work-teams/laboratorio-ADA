@@ -51,11 +51,18 @@ public class PruebaAplicacion {
 //        } else {
 //            System.out.println("\n\nCodigo de alumno no existe");
 //        }
-        
+
         ArrayList<String> miArrayList = new ArrayList<>(20);
         System.out.println(miArrayList.size());
+
+        System.out.println(100250 % 19);
+
+        int[] nums1 = {1, 2};
+        int[] nums2;
         
-        System.out.println(100250%19);
+        nums2 = nums1;
+        System.out.println(nums2[0]);
+        System.out.println(nums2[1]);
     }
 
 }

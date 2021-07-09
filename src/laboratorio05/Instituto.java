@@ -15,12 +15,28 @@ public class Instituto {
 
     private Alumno alumnos[];
     private final int TAM_TABLA = 20;
+    private Alumno misAlumnos[][];
 
     public Instituto() {
         alumnos = new Alumno[TAM_TABLA];
         for (int i = 0; i < TAM_TABLA; i++) {
             alumnos[i] = new Alumno(0, "", 0);
         }
+
+        misAlumnos = new Alumno[TAM_TABLA][3];
+        for (int i = 0; i < TAM_TABLA; i++) {
+            for (int j = 0; j < 3; j++) {
+                misAlumnos[i][j] = new Alumno(0, "", 0);
+            }
+        }
+    }
+
+    public void setCodigoDelAlumnoMatriz(int codigo, int i, int j) {
+        misAlumnos[i][j].setCodigoDelAlumno(codigo);
+    }
+
+    public int getCodigoDelAlumnoMatriz(int i, int j) {
+        return misAlumnos[i][j].getCodigoDelAlumno();
     }
 
     public void setCodigoDelAlumno(int codigo, int i) {
@@ -39,12 +55,28 @@ public class Instituto {
         return alumnos[i].getNombreDelAlumno();
     }
 
+    public void setNombreDelAlumnoMatriz(String nombre, int i, int j) {
+        misAlumnos[i][j].setNombreDelAlumno(nombre);
+    }
+
+    public String getNombreDelAlumnoMatriz(int i, int j) {
+        return misAlumnos[i][j].getNombreDelAlumno();
+    }
+
     public void setPensionDelAlumno(float pension, int i) {
         alumnos[i].setPensionDelAlumno(pension);
     }
 
     public float getPensionDelAlumno(int i) {
         return alumnos[i].getPensionDelAlumno();
+    }
+
+    public void setPensionDelAlumnoMatriz(float pension, int i, int j) {
+        misAlumnos[i][j].setPensionDelAlumno(pension);
+    }
+
+    public float getPensionDelAlumnoMatriz(int i, int j) {
+        return misAlumnos[i][j].getPensionDelAlumno();
     }
 
     public int getNumeroDeAlumnos() {
@@ -123,7 +155,7 @@ public class Instituto {
             return -1; //código no existe
         }
     }
-    
+
     public void eliminarUniversal(int pos) {
         if (pos != -1) {
             setCodigoDelAlumno(0, pos);
@@ -133,7 +165,7 @@ public class Instituto {
             JOptionPane.showMessageDialog(null, "Codigo no existe");
         }
     }
-    
+
     // REASIGNACIÓN POR PRUEBA CUADRATICA
     public void insertarCuadratica(int codigo, String nombre, float pension) {
         int pos = hash(codigo);
@@ -145,7 +177,7 @@ public class Instituto {
             int i = 1;
             int posNew = pos + (i * i);
             boolean flag = false;
-            while (posNew<getNumeroDeAlumnos() && flag == false) {
+            while (posNew < getNumeroDeAlumnos() && flag == false) {
                 if (getCodigoDelAlumno(posNew) == 0) {
                     setCodigoDelAlumno(codigo, posNew);
                     setNombreDelAlumno(nombre, posNew);
@@ -157,10 +189,10 @@ public class Instituto {
             }
             if (!flag) {
                 posNew = 0;
-                while (posNew < getNumeroDeAlumnos() && getCodigoDelAlumno(posNew)!=0) {
+                while (posNew < getNumeroDeAlumnos() && getCodigoDelAlumno(posNew) != 0) {
                     posNew = posNew + 1;
                 }
-                if (getCodigoDelAlumno(posNew)==0) {
+                if (getCodigoDelAlumno(posNew) == 0) {
                     setCodigoDelAlumno(codigo, posNew);
                     setNombreDelAlumno(nombre, posNew);
                     setPensionDelAlumno(pension, posNew);
@@ -168,7 +200,7 @@ public class Instituto {
             }
         }
     }
-    
+
     public int buscarCuadratica(int codigo) {
         int pos = hash(codigo);
         if (getCodigoDelAlumno(pos) == codigo) {
@@ -191,6 +223,60 @@ public class Instituto {
                 posNew = posNew + 1;
             }
             return -1;
+        }
+    }
+
+    // REASIGNACION ANIDADOS
+    public boolean insertarAnidados(int codigo, String nombre, float pension) {
+        int pos = hash(codigo);
+        if (getCodigoDelAlumnoMatriz(pos, 0) == 0) {
+            setCodigoDelAlumnoMatriz(codigo, pos, 0);
+            setNombreDelAlumnoMatriz(nombre, pos, 0);
+            setPensionDelAlumnoMatriz(pension, pos, 0);
+            return true;
+        } else {
+            int posSgte = 1;
+            while (posSgte < 3) {
+                if (getCodigoDelAlumnoMatriz(pos, posSgte) == 0) {
+                    setCodigoDelAlumnoMatriz(codigo, pos, posSgte);
+                    setNombreDelAlumnoMatriz(nombre, pos, posSgte);
+                    setPensionDelAlumnoMatriz(pension, pos, posSgte);
+                    return true;
+                }
+                posSgte++;
+            }
+            return false;
+        }
+    }
+
+    public int[] buscarAnidados(int codigo) {
+        int[] posMatriz = {-1, -1};
+        int pos = hash(codigo);
+        if (getCodigoDelAlumnoMatriz(pos, 0) == codigo) {
+            posMatriz[0] = pos;
+            posMatriz[1] = 0;
+            return posMatriz;
+        } else {
+            int posSgte = 1;
+            while (posSgte < 3) {
+                if (getCodigoDelAlumnoMatriz(pos, posSgte) == codigo) {
+                    posMatriz[0] = pos;
+                    posMatriz[1] = posSgte;
+                    return posMatriz;
+                }
+                posSgte++;
+            }
+            return posMatriz;
+        }
+    }
+
+    public void eliminarAnidados(int[] pos) {
+        if (pos[0] != -1) {
+            setCodigoDelAlumnoMatriz(0, pos[0], pos[1]);
+            setNombreDelAlumnoMatriz("", pos[0], pos[1]);
+            setPensionDelAlumnoMatriz(0.0f, pos[0], pos[1]);
+        } else {
+            JOptionPane.showMessageDialog(null, "Codigo no existe");
         }
     }
 }
